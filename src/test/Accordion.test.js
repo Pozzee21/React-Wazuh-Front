@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import Accordion from '../Components/Accordion';
 
 
-test('renders content',()=>{
+test('renders with data',()=>{
 const accordion = { 
     Datashow: {
         "_index": "wazuh-alerts-4.x-sample-security",
@@ -76,5 +76,28 @@ const accordion = {
 const component = render(<Accordion Datashow={accordion.Datashow}/>)
 
  const level =component.getByText('5');
+ const id =component.getByText('Id: 554');
+ const description =component.getByText('Description: File added to the system.');
+
 expect(level).toHaveTextContent;
+expect(id).toHaveTextContent;
+expect(description).toHaveTextContent;
+
 })
+
+test('renders without data',()=>{
+  const accordion = { 
+      Datashow: {},
+      important : true
+  }
+  const component = render(<Accordion Datashow={accordion.Datashow}/>)
+  
+   const level =component.getByText('Level: Empty');
+   const id =component.getByText('Id: Empty');
+   const description =component.getByText('Description: Empty');
+  
+  expect(level).toHaveTextContent;
+  expect(id).toHaveTextContent;
+  expect(description).toHaveTextContent;
+  
+  })

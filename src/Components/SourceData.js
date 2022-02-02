@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 
 
 const AgentDetail = ({ Datashow }) => {
@@ -9,14 +9,14 @@ const AgentDetail = ({ Datashow }) => {
             <Card className="text-center">
                 <Card.Header>Source Data</Card.Header>
                 <Card.Body>
-                    <Card.Title>Date: {(Datashow._source.timestamp).toString().slice(0, 10).replaceAll("-", "/")}</Card.Title>
+                     {Datashow._source ? <Card.Title>Date: {(Datashow._source.timestamp).toString().slice(0, 10).replaceAll("-", "/")}</Card.Title>:<Card.Title>Date: Empty</Card.Title> }
                     <Card.Text>
                         <div style={{textAlign:"start"}}>
                             <ul>
-                                {Datashow._source ? <ListGroup.Item><b>Id: </b>{Datashow._source.id}</ListGroup.Item> : <ListGroup.Item>ID: Empty</ListGroup.Item>}
+                                {Datashow._source ? <ListGroup.Item><b>Id: </b>{Datashow._source.id}</ListGroup.Item> : <ListGroup.Item>Id: Empty</ListGroup.Item>}
                                 {Datashow._source ? <ListGroup.Item><b>Event: </b>{Datashow._source.syscheck.event}</ListGroup.Item> : <ListGroup.Item>Event: Empty</ListGroup.Item>}
                                 {Datashow._source ? <ListGroup.Item><b>Path: </b>{Datashow._source.syscheck.path}</ListGroup.Item> : <ListGroup.Item>Path: Empty</ListGroup.Item>}
-                                {Datashow._source.syscheck.changed_attributes ? <ListGroup.Item><b>Changed attributes: </b>{Datashow._source.syscheck.changed_attributes}</ListGroup.Item> : <ListGroup.Item><b>Changed attributes:</b> Empty</ListGroup.Item>}
+                                {Datashow._source ? <ListGroup.Item><b>Changed attributes: </b>{Datashow._source.syscheck.changed_attributes}</ListGroup.Item> : <ListGroup.Item><b>Changed attributes:</b> Empty</ListGroup.Item>}
                                 {Datashow._source ? <ListGroup.Item><b>Uname_after: </b>{Datashow._source.syscheck.uname_after}</ListGroup.Item> : <ListGroup.Item>Uname_after: Empty</ListGroup.Item>}
                                 {Datashow._source ? <ListGroup.Item><b>Gname_after: </b>{Datashow._source.syscheck.gname_after}</ListGroup.Item> : <ListGroup.Item>Gname_after: Empty</ListGroup.Item>}
                                 {Datashow._source ? <ListGroup.Item><b>Uid_after: </b>{Datashow._source.syscheck.uid_after}</ListGroup.Item> : <ListGroup.Item>Uid_after: Empty</ListGroup.Item>}
@@ -28,7 +28,7 @@ const AgentDetail = ({ Datashow }) => {
 
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer className="text-muted">sha256_after: {Datashow._source.syscheck.sha256_after}</Card.Footer>
+                {Datashow._source? <Card.Footer className="text-muted">sha256_after: {Datashow._source.syscheck.sha256_after}</Card.Footer>:<Card.Footer>sha256_after: Empty </Card.Footer>}
             </Card>
         </div>)
 }

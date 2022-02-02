@@ -51,7 +51,7 @@ export default function Dashboard(){
                     <div className="p-2">
                       <ChartBar />
                     </div>
-                    <a href="#/Alert" className="btn btn-primary">See more details </a>
+                    <a href="#/Alerts" className="btn btn-primary">See more details </a>
                   </div>
                 </div>
               </Card>

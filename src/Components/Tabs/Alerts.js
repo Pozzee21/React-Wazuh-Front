@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Col, Row, Offcanvas, Accordion } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import Agent from '../Agent';
-import Loading from "../Loading";
 import SourceData from "../SourceData";
 import AccordionRule from '../Accordion';
 import FooterMoreDetails from "../FooterMoreDetails";
@@ -148,12 +147,16 @@ export default function Agents() {
             if(searchAll){
                 dataResult = data.filter(row => row._id.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
                 || row._source.agent.name.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
+                || row._source.agent.ip.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
+                || row._source.agent.id.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
                 || row._source.rule.description.toString().toLowerCase().indexOf(e.toLowerCase()) > -1)
 
             }else{
                 
                 dataResult = currentPage.filter(row => row._id.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
                     || row._source.agent.name.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
+                    || row._source.agent.ip.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
+                    || row._source.agent.id.toString().toLowerCase().indexOf(e.toLowerCase()) > -1
                     || row._source.rule.description.toString().toLowerCase().indexOf(e.toLowerCase()) > -1)
             }
         }
@@ -179,9 +182,9 @@ export default function Agents() {
                 </Col>
                 <Col>
                     <div className="searchBar" style={{ display: "inline-block" }}>
-                        <label style={{ marginRight: '10px' }}>Search by Id, Agent Name or Details</label>
-                        <input type="text" onKeyUp={(e) => searchAlert(e.target.value)} ></input><br/>
-                        <label> Search in all alerts </label>
+                        <label style={{ marginRight: '10px' }}>Search</label>
+                        <input type="text" onKeyUp={(e) => searchAlert(e.target.value)} placeholder="id, Name,ip, id agent or Details"></input><br/>
+                        <label> Search in all alerts </label><a> </a>
                         <input className="form-check-input" name="SearchAll" type="checkbox" checked={searchAll} onChange={handleInputChange} />
                     </div>
                 </Col>
@@ -194,11 +197,11 @@ export default function Agents() {
                         <tr className="">
 
                             <th scope="col" onClick={() => { sortArrayTable("_id") }} data-toggle="tooltip" data-placement="top" title="Click me an filter the data">ID</th>
-                            <th scope="col" onClick={() => { sortArrayTable("Timestamp") }}>TimeStamp</th>
-                            <th scope="col" onClick={() => { sortArrayTable("ip") }}>Agent IP</th>
-                            <th scope="col" onClick={() => { sortArrayTable("name") }}>Agent Name</th>
-                            <th scope="col" onClick={() => { sortArrayTable("id") }}>Agent ID</th>
-                            <th scope="col" onClick={() => { sortArrayTable("Details") }}>Details</th>
+                            <th scope="col" onClick={() => { sortArrayTable("Timestamp") }}data-toggle="tooltip" data-placement="top" title="Click me an filter the data">TimeStamp</th>
+                            <th scope="col" onClick={() => { sortArrayTable("ip") }}data-toggle="tooltip" data-placement="top" title="Click me an filter the data">Agent IP</th>
+                            <th scope="col" onClick={() => { sortArrayTable("name") }}data-toggle="tooltip" data-placement="top" title="Click me an filter the data">Agent Name</th>
+                            <th scope="col" onClick={() => { sortArrayTable("id") }}data-toggle="tooltip" data-placement="top" title="Click me an filter the data">Agent ID</th>
+                            <th scope="col" onClick={() => { sortArrayTable("Details") }}data-toggle="tooltip" data-placement="top" title="Click me an filter the data">Details</th>
                             <th scope="#">{reverse ? <IconContext.Provider value={{ size: "1em" }}><BsArrowUp /> </IconContext.Provider > : <IconContext.Provider value={{ size: "1em" }}> <BsArrowDown /></IconContext.Provider>}</th>
 
                         </tr>
