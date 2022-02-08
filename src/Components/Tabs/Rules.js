@@ -23,9 +23,10 @@ export default function Rules() {
 
     const handleModal = id => {
         data.map((d) => {
-            if (id === d._id) {
+            if (id === d.rule.id) {
                 setTotalItems(total_items)
-                var dataResult = d
+                var dataResult = d.rule
+                setTotal_alerts(d.total_alerts)
                 setDatashow(dataResult)
             }
         })
